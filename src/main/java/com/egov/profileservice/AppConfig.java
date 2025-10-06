@@ -14,7 +14,7 @@ public class AppConfig
     EurekaDiscoveryClient discoveryClient;
 
     @Bean
-    @Scope("prototype")
+    //@Scope("prototype")
     public WebClient authValidateWebClient(WebClient.Builder webClientBuilder)
     {
 //        List<ServiceInstance> instances = discoveryClient.getInstances("auth-service");
@@ -23,7 +23,7 @@ public class AppConfig
 //        String hostname = instances.get(0).getHost();
 //        String port = String.valueOf(instances.get(0).getPort());
 
-        return webClientBuilder
+        return webClientBuilder // hardcoded hostname and portnumber for the auth-service
                 .baseUrl(String.format("http://%s:%s/api/v1/validate", "localhost", "8085"))
                 .filter(new LoggingWebClientFilter())
                 .build();
